@@ -1,0 +1,35 @@
+{
+  "name": "odin-innercircle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch app.js",
+    "populate": "node db/populatedb.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xsupremeyx/odin-InnerCircle.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/xsupremeyx/odin-InnerCircle/issues"
+  },
+  "homepage": "https://github.com/xsupremeyx/odin-InnerCircle#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "connect-pg-simple": "^10.0.0",
+    "dotenv": "^17.4.2",
+    "ejs": "^5.0.2",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "express-validator": "^7.3.2",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.20.0"
+  }
+}
