@@ -30,6 +30,7 @@ router.param("id", async (req, res, next, id) => {
 router.get('/new', ensureLoggedIn, messageController.getNewMessageForm);
 router.post('/new', ensureLoggedIn, messageController.createMessage);
 
+router.post('/:id/delete', ensureOwnerOrAdmin, messageController.deleteMessage);
 router.get('/:id/edit', ensureOwnerOrAdmin, messageController.getEditMessageForm);
 router.post('/:id/edit', ensureOwnerOrAdmin, messageController.updateMessage);
 router.get('/:id', messageController.getMessageById);

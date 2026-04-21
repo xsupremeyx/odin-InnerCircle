@@ -86,6 +86,16 @@ const updateMessage = [
     }
 ]
 
+async function deleteMessage(req, res, next){
+    try{
+        await db.deleteMessage(req.message.id);
+        res.redirect('/messages');
+    }
+    catch(err){
+        next(err);
+    }
+}
+
 module.exports = {
     getMessages,
     getNewMessageForm,
@@ -93,4 +103,5 @@ module.exports = {
     getMessageById,
     getEditMessageForm,
     updateMessage,
+    deleteMessage,
 }
