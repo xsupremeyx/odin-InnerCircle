@@ -6,14 +6,14 @@
 
     <p><%= message.content %></p>
 
-    <% if (locals.currentUser) { %>
+    <% if (locals.currentUser &&  currentUser.is_member) { %>
         <small>
             Posted by <%= message.username %>
             on <%= message.created_at %>
         </small>
     <% } %>
 
-    <% if (locals.currentUser && (locals.currentUser.id === message.user_id || locals.currentUser.is_admin)) { %>
+    <% if (locals.currentUser && (currentUser.is_member && locals.currentUser.id === message.user_id || locals.currentUser.is_admin)) { %>
 
         <a href="/messages/<%= message.id %>/edit">Edit</a>
 

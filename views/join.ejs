@@ -1,0 +1,19 @@
+<%- include("partials/header", { title: title }) %>
+
+<div class="page-container">
+    <h1>Join the Club</h1>
+
+    <%- include("partials/error") %>
+
+    <form action="/join" method="POST">
+        <input
+            type="text"
+            name="passcode"
+            placeholder="Enter passcode"
+            required
+        >
+        <button type="submit">Join</button>
+    </form>
+</div>
+
+<%- include("partials/footer") %>

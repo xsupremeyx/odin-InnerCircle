@@ -43,10 +43,19 @@ async function deleteMessage(id){
     );
 }
 
+// membership pass check
+async function updateMemberStatus(userId){
+    await pool.query(
+        "UPDATE users SET is_member = TRUE WHERE id = $1",
+        [userId]
+    )
+}
+
 module.exports = {
     getAllMessages,
     insertMessage,
     getMessageById,
     updateMessage,
     deleteMessage,
+    updateMemberStatus,
 }

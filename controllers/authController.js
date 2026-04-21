@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const pool = require('../db/pool');
+const db = require('../db/queries');
 const { validationResult, matchedData } = require('express-validator');
 
 function getSignUp(req, res, next){
@@ -57,9 +58,42 @@ function getLogOut(req, res, next){
     });
 }
 
+// membership check
+function getJoinForm(req, res, next){
+    try{
+        res.render("join", {
+            title: "Join Membership",
+            errors: [],
+        });
+    }
+    catch(err){
+        next(err);
+    }
+}
+
+
+async function postJoinForm(req, res, next){
+    try{
+        const { passcode } = req.body;
+        if( passcode === process.env.MEMBERSHIP_PASS){
+            await db.updateMemberStatus(req.user.id);
+            return res.redirect('/messages');
+        }
+        res.status(400).render("join", {
+            title: "Join Membership",
+            errors: [{ msg: "Incorrect passcode" }],
+        });
+    }
+    catch(err){
+        next(err);
+    }
+}
+
 module.exports = {
     getSignUp,
     postSignUp,
     getLogIn,
     getLogOut,
+    getJoinForm,
+    postJoinForm,
 }

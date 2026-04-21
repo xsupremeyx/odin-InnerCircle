@@ -15,15 +15,15 @@
 
         <p><%= msg.content %></p>
 
-        <% if (locals.currentUser) { %>
+        <% if (locals.currentUser && currentUser.is_member) { %>
             <small>By <%= msg.username %></small>
         <% } else { %>
             <small>By Anonymous</small>
         <% } %>
 
         <%
-            const canAct = locals.currentUser &&
-                (locals.currentUser.id === msg.user_id || locals.currentUser.is_admin);
+            const canAct = locals.currentUser && 
+                (currentUser.is_member && locals.currentUser.id === msg.user_id  || locals.currentUser.is_admin);
         %>
 
         <% if (canAct) { %>

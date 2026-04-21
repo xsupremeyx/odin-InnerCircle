@@ -21,7 +21,8 @@ async function createTables(client){
             id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
             username VARCHAR(50) NOT NULL UNIQUE,
             password VARCHAR(255) NOT NULL,
-            is_admin BOOLEAN NOT NULL DEFAULT FALSE
+            is_admin BOOLEAN NOT NULL DEFAULT FALSE,
+            is_member BOOLEAN NOT NULL DEFAULT FALSE
         );
         CREATE TABLE IF NOT EXISTS messages (
             id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -43,10 +44,10 @@ async function seedData(client){
     const hashedPassword = await bcrypt.hash(process.env.POPULATEPASS, 10);
 
     await client.query(
-        `INSERT INTO users (username, password) VALUES
-        ('alice', $1),
-        ('bob', $1),
-        ('charlie', $1);`,
+        `INSERT INTO users (username, password, is_member) VALUES
+        ('alice', $1, TRUE),
+        ('bob', $1, TRUE),
+        ('charlie', $1, TRUE);`,
         [hashedPassword]
     );
 
