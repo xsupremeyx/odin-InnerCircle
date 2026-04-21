@@ -1,0 +1,25 @@
+<%- include("../partials/header", { title: title }) %>
+
+<h1>New Message</h1>
+
+<%- include("../partials/error") %>
+
+<form action="/messages/new" method="POST">
+    <input
+        type="text"
+        name="title"
+        placeholder="Title"
+        value="<%= data.title || '' %>"
+        required
+    >
+
+    <textarea
+        name="content"
+        placeholder="Message"
+        required
+    ><%= data.content || '' %></textarea>
+
+    <button type="submit">Post</button>
+</form>
+
+<%- include("../partials/footer") %>

@@ -88,9 +88,9 @@ app.use((req, res, next) => {
     next();
 })
 
-app.use('/', indexRouter);
-app.use('/', messageRouter);
+app.use('/messages', messageRouter);
 app.use('/', authRouter);
+app.use('/', indexRouter);
 
 
 const PORT = process.env.PORT || 3000;
