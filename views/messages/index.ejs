@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+</head>
+<body>
+
+<h1>Messages</h1>
+
+<% messages.forEach(msg => { %>
+    <div>
+        <h3><%= msg.title %></h3>
+        <p><%= msg.content %></p>
+
+        <% if (currentUser) { %>
+            <small>By <%= msg.username %></small>
+        <% } else { %>
+            <small>By Anonymous</small>
+        <% } %>
+    </div>
+<% }) %>
+
+</body>
+</html>

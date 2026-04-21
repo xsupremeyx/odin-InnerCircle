@@ -1,7 +1,18 @@
 const { Client } = require('pg');
 require('dotenv').config();
+const bcrypt = require('bcryptjs');
+
 
 const URL = process.argv[2] || process.env.DATABASE_URL;
+
+async function resetTables(client){
+    console.log('Dropping existing tables...');
+    await client.query(`
+        DROP TABLE IF EXISTS messages;
+        DROP TABLE IF EXISTS users;
+    `);
+    console.log('Tables dropped.');
+}
 
 async function createTables(client){
     console.log('Creating tables...');
@@ -26,6 +37,30 @@ async function createTables(client){
     console.log('Tables created successfully.');
 }
 
+async function seedData(client){
+    console.log('Seeding data...');
+
+    const hashedPassword = await bcrypt.hash(process.env.POPULATEPASS, 10);
+
+    await client.query(
+        `INSERT INTO users (username, password) VALUES
+        ('alice', $1),
+        ('bob', $1),
+        ('charlie', $1);`,
+        [hashedPassword]
+    );
+
+    await client.query(`
+        INSERT INTO messages (title, content, user_id) VALUES
+        ('Welcome', 'Hello from Alice', 1),
+        ('Second Post', 'Bob here', 2),
+        ('Hidden Identity', 'Guess who?', 3),
+        ('Another One', 'Alice again', 1);
+    `);
+
+    console.log('Data seeded.');
+}
+
 async function main(){
     console.log('Connecting to database...');
     const client = new Client({
@@ -35,9 +70,9 @@ async function main(){
     try {
         await client.connect();
         console.log('Connected to database successfully.');
-
+        await resetTables(client);
         await createTables(client);
-
+        await seedData(client);
     }
     catch (err) {
         console.error('Error populating database:', err);
