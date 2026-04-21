@@ -29,8 +29,16 @@ async function getMessageById(id){
     return rows[0];
 }
 
+async function updateMessage(id, title, content){
+    await pool.query(
+        "UPDATE messages SET title = $1, content = $2 WHERE id = $3",
+        [title, content, id]
+    );
+}
+
 module.exports = {
     getAllMessages,
     insertMessage,
     getMessageById,
+    updateMessage,
 }

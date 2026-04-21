@@ -46,30 +46,51 @@ const createMessage = [
 
 async function getMessageById(req, res, next){
     try{
-        const id = parseInt(req.params.id,10);
-        
-        if(isNaN(id)){
-            const err = new Error('Invalid message ID');
-            err.status = 404;
-            return next(err);
-        }
-
-        const message = await db.getMessageById(id);
-        if(!message){
-            const err = new Error('Message not found');
-            err.status = 404;
-            return next(err);
-        }
-        res.render('messages/show', { title: message.title, message: message });
+        res.render('messages/show', { title: req.message.title, message: req.message });
     }
     catch(err){
         next(err);
     }
 }
 
+function getEditMessageForm(req, res, next){
+    res.render('messages/edit', {
+        title: "Edit Message",
+        errors: [],
+        data: req.message,
+    })
+}
+
+const updateMessage = [
+    validateMessage,
+    async (req, res, next) => {
+        try{
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).render('messages/edit', {
+                    title: "Edit Message",
+                    errors: errors.array(),
+                    data: {
+                        ...req.body,
+                        id: req.message.id,
+                    }
+                })
+            }
+            const { title, content } = matchedData(req);
+            await db.updateMessage(req.message.id, title, content);
+            res.redirect(`/messages/${req.message.id}`);
+        }
+        catch(err){
+            next(err);
+        }
+    }
+]
+
 module.exports = {
     getMessages,
     getNewMessageForm,
     createMessage,
     getMessageById,
+    getEditMessageForm,
+    updateMessage,
 }
