@@ -61,6 +61,8 @@ passport.deserializeUser( async (id, done) => {
     }
 })
 
+const flash = require('connect-flash');
+
 
 // Session middleware (before passport)
 app.use(session({
@@ -77,8 +79,11 @@ app.use(session({
     }
 }));
 
+
 // Passport middleware
 app.use(passport.session());
+
+app.use(flash());
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -92,8 +97,29 @@ app.use('/messages', messageRouter);
 app.use('/', authRouter);
 app.use('/', indexRouter);
 
+// 404 handler
+app.use((req,res,next) => {
+    const err = new Error("Not Found");
+    err.status = 404;
+    next(err);
+})
+
+// global error handler
+app.use((error, req, res, next) => {
+    console.error(error);
+    res.status(error.status || 500).render("error", { 
+        title: "Error", 
+        message: error.message || "An unexpected error occurred.", 
+        error: process.env.NODE_ENV === "development" ? error : {}
+    });
+})
+
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+app.listen(PORT, (err) => {
+    if (err) {
+        console.error("Failed to start server:", err);
+        return;
+    }
     console.log(`Server is running on port ${PORT}`);
 });

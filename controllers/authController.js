@@ -44,7 +44,9 @@ async function postSignUp(req, res, next){
 
 function getLogIn(req, res, next){
     try{
-        res.render("log-in");
+        res.render("log-in", {
+            errors: req.flash('error').map(msg => ({ msg })),
+        });
     }
     catch(err){
         next(err);

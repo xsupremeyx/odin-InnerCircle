@@ -14,6 +14,7 @@ router.get("/log-in", authController.getLogIn);
 router.post("/log-in", passport.authenticate('local', {
     successRedirect: '/messages',
     failureRedirect: '/log-in',
+    failureFlash: true,
 }));
 
 router.get("/log-out", authController.getLogOut);

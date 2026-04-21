@@ -8,6 +8,8 @@
         <a href="/log-out">Log out</a>
         <% if (currentUser.is_member) { %>
             <a href="/messages/new">+ New Message</a>
+        <% } else {%>
+            <a href="/join">Join Circle</a>
         <% } %>
     <% } else { %>
         <a href="/log-in">Log in</a>

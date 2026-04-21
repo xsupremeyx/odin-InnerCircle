@@ -3,6 +3,7 @@
 <div class="page-container">
 <h1>Log In</h1>
 
+<%- include("partials/error") %>
 <form action="/log-in" method="POST">
   <input type="text" name="username" placeholder="Username" required/>
   <input type="password" name="password" placeholder="Password" required/>
