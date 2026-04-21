@@ -1,17 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-</head>
-<body>
-    <% if (currentUser) { %>
-        <span>Hi, <%= currentUser.username %></span>
-        <a href="/log-out">Log out</a>
-    <% } else { %>
-        <a href="/log-in">Log in</a>
-        <a href="/sign-up">Sign up</a>
-    <% } %>
-</body>
-</html>
+<%- include("partials/header", { title: title }) %>
+
+<div class="page-container">
+
+    <div class="hero">
+        <h1>Welcome to Inner Circle</h1>
+        <% if (!locals.currentUser) { %>
+            <p>See more when you`re in.</p>
+            <a href="/sign-up" class="btn">Join Now</a>
+        <% } else { %>
+            <p>See what`s new in the circle.</p>
+            <a href="/messages" class="btn">View Messages</a>
+        <% } %>
+    </div>
+
+</div>
+
+<%- include("partials/footer") %>

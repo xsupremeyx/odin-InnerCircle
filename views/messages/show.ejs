@@ -13,7 +13,7 @@
         </small>
     <% } %>
 
-    <% if (locals.currentUser && (currentUser.id === message.user_id || currentUser.is_admin)) { %>
+    <% if (locals.currentUser && (locals.currentUser.id === message.user_id || locals.currentUser.is_admin)) { %>
 
         <a href="/messages/<%= message.id %>/edit">Edit</a>
 
