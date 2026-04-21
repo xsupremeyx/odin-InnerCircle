@@ -44,8 +44,32 @@ const createMessage = [
     }
 ]
 
+async function getMessageById(req, res, next){
+    try{
+        const id = parseInt(req.params.id,10);
+        
+        if(isNaN(id)){
+            const err = new Error('Invalid message ID');
+            err.status = 404;
+            return next(err);
+        }
+
+        const message = await db.getMessageById(id);
+        if(!message){
+            const err = new Error('Message not found');
+            err.status = 404;
+            return next(err);
+        }
+        res.render('messages/show', { title: message.title, message: message });
+    }
+    catch(err){
+        next(err);
+    }
+}
+
 module.exports = {
     getMessages,
     getNewMessageForm,
     createMessage,
+    getMessageById,
 }

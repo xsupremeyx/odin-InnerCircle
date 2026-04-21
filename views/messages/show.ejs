@@ -1,0 +1,18 @@
+<%- include("../partials/header", { title: title }) %>
+
+<div class="page-container">
+
+    <h1><%= message.title %></h1>
+
+    <p><%= message.content %></p>
+
+    <% if (locals.currentUser) { %>
+        <small>
+            Posted by <%= message.username %>
+            on <%= message.created_at %>
+        </small>
+    <% } %>
+
+</div>
+
+<%- include("../partials/footer") %>

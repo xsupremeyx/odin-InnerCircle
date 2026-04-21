@@ -17,7 +17,20 @@ async function insertMessage(title, content, user_id){
     );
 }
 
+async function getMessageById(id){
+    const SQL = `
+        SELECT messages.*, users.username
+        FROM messages
+        JOIN users ON messages.user_id = users.id
+        WHERE messages.id = $1;
+    `;
+    const { rows } = await pool.query(SQL, [id]);
+    if(rows.length === 0) return null;
+    return rows[0];
+}
+
 module.exports = {
     getAllMessages,
     insertMessage,
+    getMessageById,
 }

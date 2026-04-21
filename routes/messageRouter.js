@@ -6,6 +6,7 @@ const { ensureLoggedIn } = require('../middleware/auth');
 
 router.get('/new', ensureLoggedIn, messageController.getNewMessageForm);
 router.post('/new', ensureLoggedIn, messageController.createMessage);
+router.get('/:id', messageController.getMessageById);
 router.get('/', messageController.getMessages);
 
 module.exports = router;
