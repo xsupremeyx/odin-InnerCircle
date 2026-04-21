@@ -1,10 +1,14 @@
 const bcrypt = require('bcryptjs');
 const pool = require('../db/pool');
-
+const { validationResult, matchedData } = require('express-validator');
 
 function getSignUp(req, res, next){
     try{
-        res.render("sign-up");
+        res.render("sign-up", {
+            title: "Sign Up",
+            errors: [],
+            data: {},
+        });
     }
     catch(err){
         next(err);
@@ -13,7 +17,16 @@ function getSignUp(req, res, next){
 
 async function postSignUp(req, res, next){
     try{
-        const { username, password } = req.body;
+        const errors = validationResult(req);
+        if( !errors.isEmpty()){
+            return res.status(400).render("sign-up", {
+                title: "Sign Up",
+                errors: errors.array(),
+                data: req.body,
+            });
+        }
+        // use sanitised data 
+        const { username, password } = matchedData(req);
         
         const hashedPassword = await bcrypt.hash(password, 10);
 
