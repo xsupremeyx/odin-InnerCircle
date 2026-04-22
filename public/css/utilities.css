@@ -1,0 +1,17 @@
+/* buttons */
+.btn {
+    display: inline-block;
+    background-color: var(--color-accent);
+    color: #fff;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius);
+    text-decoration: none;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--color-accent-hover);
+    color: #fff;
+}
