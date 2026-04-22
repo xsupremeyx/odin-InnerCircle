@@ -48,3 +48,15 @@
     border-radius: var(--radius);
     font-size: 0.875rem;
 }
+
+/* back links */
+.back-link {
+    display: inline-block;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    margin-bottom: var(--space-md);
+}
+
+.back-link:hover {
+    color: var(--color-text);
+}
