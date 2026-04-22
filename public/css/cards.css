@@ -1,0 +1,37 @@
+.message-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+    background-color: var(--color-surface);
+}
+
+.message-card h3 {
+    margin-bottom: var(--space-xs);
+}
+
+.message-card h3 a {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+.message-card h3 a:hover {
+    color: var(--color-accent);
+}
+
+.message-card p {
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+}
+
+.message-card small {
+    margin-bottom: var(--space-sm);
+    display: block;
+}
+
+.message-actions {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: center;
+    margin-top: var(--space-sm);
+}
