@@ -3,15 +3,48 @@
     display: inline-block;
     background-color: var(--color-accent);
     color: #fff;
-    padding: var(--space-sm) var(--space-md);
+    padding: var(--space-sm) var(--space-lg);
+    letter-spacing: 0.02em;
     border-radius: var(--radius);
     text-decoration: none;
     border: none;
     font-weight: 500;
     cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: var(--font-size-base);
 }
 
 .btn:hover {
     background-color: var(--color-accent-hover);
     color: #fff;
+}
+
+.btn-ghost-danger {
+    display: inline-block;
+    background: none;
+    border: 1px solid var(--color-error);
+    color: var(--color-error);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius);
+    font-family: var(--font-sans);
+    font-size: var(--font-size-base);
+    cursor: pointer;
+}
+
+.btn-ghost-danger:hover {
+    background-color: var(--color-error);
+    color: #fff;
+}
+
+/* form error  */
+
+.form-errors {
+    list-style: none;
+    color: var(--color-error);
+    border-left: 3px solid var(--color-error);
+    padding: var(--space-sm) var(--space-md);
+    margin-bottom: var(--space-md);
+    background-color: color-mix(in srgb, var(--color-error) 8%, transparent);
+    border-radius: var(--radius);
+    font-size: 0.875rem;
 }

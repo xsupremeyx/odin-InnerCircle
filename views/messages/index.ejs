@@ -30,7 +30,7 @@
             <a href="/messages/<%= msg.id %>/edit">Edit</a>
 
             <form action="/messages/<%= msg.id %>/delete" method="POST">
-                <button type="submit">Delete</button>
+                <button type="submit" class="btn-ghost-danger" onclick="return confirm('Are you sure you want to delete this message?');">Delete</button>
             </form>
         <% } %>
 
