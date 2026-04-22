@@ -11,6 +11,9 @@ const validateSignUp = [
     .trim()
     .isLength({ min: 1, max: 50 })
     .withMessage('Username is required and must be less than 50 characters.')
+    .matches(/^[a-zA-Z0-9_]+$/)
+    .withMessage('Username can only contain letters, numbers, and underscores.')
+    .bail()
     .custom(async (username) => {
         const { rows } = await pool.query(
             "SELECT 1 FROM users WHERE username = $1",
