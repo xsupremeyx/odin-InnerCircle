@@ -69,3 +69,15 @@ nav a:hover{
     color: var(--color-text-muted);
     margin: var(--space-sm) 0 var(--space-md);
 }
+
+/* theme toggle */
+
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: var(--space-xs);
+    line-height: 1;
+    margin-left: var(--space-sm);
+}
