@@ -1,0 +1,227 @@
+/*Respect reduced-motion preference*/
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/*  Keyframes */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes pulse-border {
+  0%, 100% { border-color: var(--color-accent); }
+  50%       { border-color: var(--color-accent-hover); }
+}
+
+/* Navbar */
+
+nav {
+  animation: slideDown 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Smooth colour/opacity on all nav links */
+nav a,
+.nav-brand,
+.theme-toggle {
+  transition: color 0.18s ease, opacity 0.18s ease;
+}
+
+/*  Page container (all pages fade + rise in)*/
+
+.page-container {
+  animation: fadeUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.05s;
+}
+
+/*  Hero*/
+
+.hero-content h1 {
+  animation: fadeUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.1s;
+}
+
+.hero-content p {
+  animation: fadeUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.18s;
+}
+
+.hero-actions {
+  animation: fadeUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.26s;
+}
+
+.hero-image {
+  animation: fadeIn 0.6s ease both;
+  animation-delay: 0.2s;
+}
+
+/* Message cards */
+
+.message-card {
+  animation: fadeUp 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition:
+    box-shadow 0.2s ease,
+    transform   0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* Stagger the first 8 cards so they cascade in */
+.message-card:nth-child(1)  { animation-delay: 0.04s; }
+.message-card:nth-child(2)  { animation-delay: 0.08s; }
+.message-card:nth-child(3)  { animation-delay: 0.12s; }
+.message-card:nth-child(4)  { animation-delay: 0.16s; }
+.message-card:nth-child(5)  { animation-delay: 0.20s; }
+.message-card:nth-child(6)  { animation-delay: 0.24s; }
+.message-card:nth-child(7)  { animation-delay: 0.28s; }
+.message-card:nth-child(8)  { animation-delay: 0.32s; }
+
+.message-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-accent);
+}
+
+:root.dark .message-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* Buttons */
+
+.btn,
+.btn-outline,
+.btn-ghost-danger {
+  transition:
+    background-color 0.18s ease,
+    color            0.18s ease,
+    border-color     0.18s ease,
+    transform        0.14s ease,
+    box-shadow       0.18s ease;
+}
+
+.btn:hover,
+.btn-outline:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(79, 70, 229, 0.28);
+}
+
+:root.dark .btn:hover,
+:root.dark .btn-outline:hover {
+  box-shadow: 0 3px 12px rgba(99, 102, 241, 0.35);
+}
+
+.btn:active,
+.btn-outline:active,
+.btn-ghost-danger:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/*  Forms  */
+
+form {
+  animation: scaleIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.08s;
+}
+
+input,
+textarea {
+  transition:
+    border-color 0.2s ease,
+    box-shadow   0.2s ease,
+    background-color 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 18%, transparent);
+  animation: pulse-border 2s ease-in-out infinite;
+}
+
+/*  Links*/
+
+a {
+  transition: color 0.18s ease;
+}
+
+.back-link {
+  transition: color 0.18s ease, transform 0.18s ease;
+  display: inline-block;  /* needed for transform */
+}
+
+.back-link:hover {
+  transform: translateX(-3px);
+}
+
+/* Form errors */
+
+.form-errors {
+  animation: fadeUp 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/*  Show page single card */
+
+.page-container > .message-card {
+  animation: scaleIn 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.08s;
+}
+
+/* Theme toggle*/
+
+.theme-toggle {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.theme-toggle:hover {
+  transform: rotate(20deg) scale(1.15);
+}
+
+/*  Footer fade in */
+
+.site-footer {
+  animation: fadeIn 0.5s ease both;
+  animation-delay: 0.3s;
+}
