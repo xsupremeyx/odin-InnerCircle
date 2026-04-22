@@ -1,227 +1,98 @@
-/*Respect reduced-motion preference*/
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
+/* ============================================
+   ANIMATIONS & TRANSITIONS
+   ============================================ */
 
-/*  Keyframes */
-
+/* Page load fade-in */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+body {
+    animation: fadeIn 0.3s ease-out both;
 }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Hero content slide-in */
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-20px); }
+    to   { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position:  200% center; }
-}
-
-@keyframes pulse-border {
-  0%, 100% { border-color: var(--color-accent); }
-  50%       { border-color: var(--color-accent-hover); }
-}
-
-/* Navbar */
-
-nav {
-  animation: slideDown 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-/* Smooth colour/opacity on all nav links */
-nav a,
-.nav-brand,
-.theme-toggle {
-  transition: color 0.18s ease, opacity 0.18s ease;
-}
-
-/*  Page container (all pages fade + rise in)*/
-
-.page-container {
-  animation: fadeUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: 0.05s;
-}
-
-/*  Hero*/
-
-.hero-content h1 {
-  animation: fadeUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: 0.1s;
-}
-
-.hero-content p {
-  animation: fadeUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: 0.18s;
-}
-
-.hero-actions {
-  animation: fadeUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: 0.26s;
+.hero-content {
+    animation: slideInLeft 0.45s ease-out 0.1s both;
 }
 
 .hero-image {
-  animation: fadeIn 0.6s ease both;
-  animation-delay: 0.2s;
+    animation: slideInRight 0.45s ease-out 0.15s both;
 }
 
-/* Message cards */
-
+/* Card hover lift */
 .message-card {
-  animation: fadeUp 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
-  transition:
-    box-shadow 0.2s ease,
-    transform   0.2s ease,
-    border-color 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
-
-/* Stagger the first 8 cards so they cascade in */
-.message-card:nth-child(1)  { animation-delay: 0.04s; }
-.message-card:nth-child(2)  { animation-delay: 0.08s; }
-.message-card:nth-child(3)  { animation-delay: 0.12s; }
-.message-card:nth-child(4)  { animation-delay: 0.16s; }
-.message-card:nth-child(5)  { animation-delay: 0.20s; }
-.message-card:nth-child(6)  { animation-delay: 0.24s; }
-.message-card:nth-child(7)  { animation-delay: 0.28s; }
-.message-card:nth-child(8)  { animation-delay: 0.32s; }
 
 .message-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  border-color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--color-text) 8%, transparent);
+    border-color: var(--color-accent);
 }
 
-:root.dark .message-card:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
-}
-
-/* Buttons */
-
+/* Button press feedback */
 .btn,
 .btn-outline,
 .btn-ghost-danger {
-  transition:
-    background-color 0.18s ease,
-    color            0.18s ease,
-    border-color     0.18s ease,
-    transform        0.14s ease,
-    box-shadow       0.18s ease;
-}
-
-.btn:hover,
-.btn-outline:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 3px 10px rgba(79, 70, 229, 0.28);
-}
-
-:root.dark .btn:hover,
-:root.dark .btn-outline:hover {
-  box-shadow: 0 3px 12px rgba(99, 102, 241, 0.35);
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease, border-color 0.15s ease;
 }
 
 .btn:active,
 .btn-outline:active,
 .btn-ghost-danger:active {
-  transform: translateY(0);
-  box-shadow: none;
+    transform: scale(0.97);
 }
 
-/*  Forms  */
-
-form {
-  animation: scaleIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: 0.08s;
-}
-
+/* Form input focus transition */
 input,
 textarea {
-  transition:
-    border-color 0.2s ease,
-    box-shadow   0.2s ease,
-    background-color 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 input:focus,
 textarea:focus {
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 18%, transparent);
-  animation: pulse-border 2s ease-in-out infinite;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
 }
 
-/*  Links*/
-
-a {
-  transition: color 0.18s ease;
+/* Nav mobile menu slide-in */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
+nav.open .nav-right {
+    animation: slideDown 0.25s ease-out both;
+}
+
+/* Back link hover transition */
 .back-link {
-  transition: color 0.18s ease, transform 0.18s ease;
-  display: inline-block;  /* needed for transform */
+    transition: color 0.15s ease, transform 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .back-link:hover {
-  transform: translateX(-3px);
+    transform: translateX(-3px);
 }
 
-/* Form errors */
-
-.form-errors {
-  animation: fadeUp 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-/*  Show page single card */
-
-.page-container > .message-card {
-  animation: scaleIn 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: 0.08s;
-}
-
-/* Theme toggle*/
-
-.theme-toggle {
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.theme-toggle:hover {
-  transform: rotate(20deg) scale(1.15);
-}
-
-/*  Footer fade in */
-
-.site-footer {
-  animation: fadeIn 0.5s ease both;
-  animation-delay: 0.3s;
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }

@@ -43,20 +43,45 @@ async function seedData(client){
 
     const hashedPassword = await bcrypt.hash(process.env.POPULATEPASS, 10);
 
+    // Users
     await client.query(
-        `INSERT INTO users (username, password, is_member) VALUES
-        ('alice', $1, TRUE),
-        ('bob', $1, TRUE),
-        ('charlie', $1, TRUE);`,
+        `INSERT INTO users (username, password, is_admin, is_member) VALUES
+        ('Admin', $1, TRUE, TRUE),
+        ('Yash', $1, TRUE, TRUE);`,
         [hashedPassword]
     );
 
+    // Messages (random split between Admin = 1 and Yash = 2)
     await client.query(`
         INSERT INTO messages (title, content, user_id) VALUES
-        ('Welcome', 'Hello from Alice', 1),
-        ('Second Post', 'Bob here', 2),
-        ('Hidden Identity', 'Guess who?', 3),
-        ('Another One', 'Alice again', 1);
+
+        ('Welcome to the Circle',
+        'This is a private space.\nOnly members see everything.\nWhat''s said here, stays here.',
+        1),
+
+        ('What is Inner Circle?',
+        'Inner Circle is a minimal, members-only message board.\nBuilt to explore privacy, identity, and controlled access.\nNo noise. Just intentional sharing.',
+        2),
+
+        ('How visibility works',
+        'Not everyone sees the same thing.\n\n• Members see authors\n• Others see anonymity\n\nSame message. Different reality.',
+        1),
+
+        ('How to use this space',
+        'Once you''re in, you can post messages, edit your own, or delete them.\nKeep it clean. Keep it meaningful.\nThis isn''t a feed — it''s a board.',
+        2),
+
+        ('Want to join the Circle?',
+        'Membership isn''t public.\n\nIf you''re here, you''re close.\nReach out directly to get access.',
+        1),
+
+        ('Get access',
+        'To join, contact the creator.\n\nGitHub: https://github.com/xsupremeyx\nOr message directly.\n\nAccess is granted, not requested.',
+        2),
+
+        ('One rule',
+        'Respect the space.\nThat''s all.',
+        1);
     `);
 
     console.log('Data seeded.');
