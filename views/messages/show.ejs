@@ -1,27 +1,29 @@
 <%- include("../partials/header", { title: title }) %>
 
 <div class="page-container">
+    <div class="message-card">
 
-    <h1><%= message.title %></h1>
+        <h1><%= message.title %></h1>
 
-    <p><%= message.content %></p>
+        <p><%= message.content %></p>
 
-    <% if (locals.currentUser &&  currentUser.is_member) { %>
-        <small>
-            Posted by <%= message.username %>
-            on <%= new Date(message.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Kolkata' }) %>
-        </small>
-    <% } %>
-    
-        <% if (locals.currentUser && (currentUser.is_member && locals.currentUser.id === message.user_id || locals.currentUser.is_admin)) { %>
-        <div class="message-actions">
-            <a href="/messages/<%= message.id %>/edit">Edit</a>
-
-            <form action="/messages/<%= message.id %>/delete" method="POST" >
-                <button type="submit" class="btn-ghost-danger" onclick="return confirm('Are you sure you want to delete this message?');">Delete</button>
-            </form>
-        </div>   
+        <% if (locals.currentUser &&  currentUser.is_member) { %>
+            <small>
+                Posted by <%= message.username %>
+                on <%= new Date(message.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Kolkata' }) %>
+            </small>
         <% } %>
+        
+            <% if (locals.currentUser && (currentUser.is_member && locals.currentUser.id === message.user_id || locals.currentUser.is_admin)) { %>
+            <div class="message-actions">
+                <a href="/messages/<%= message.id %>/edit">Edit</a>
+
+                <form action="/messages/<%= message.id %>/delete" method="POST" >
+                    <button type="submit" class="btn-ghost-danger" onclick="return confirm('Are you sure you want to delete this message?');">Delete</button>
+                </form>
+            </div>   
+        <% } %>
+    </div>
 </div>
 
 <%- include("../partials/footer") %>

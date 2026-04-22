@@ -35,3 +35,8 @@
     align-items: center;
     margin-top: var(--space-sm);
 }
+
+.message-card h1 {
+    font-size: calc(var(--font-size-base) * 1.5);
+    margin-bottom: var(--space-sm);
+}
