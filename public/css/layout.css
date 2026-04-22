@@ -49,8 +49,10 @@ nav a:hover{
 
 .page-container {
     max-width: var(--max-width);
+    width: 100%;
     margin: 0 auto;
     padding: var(--space-lg) var(--space-md);
+    flex: 1;
 }
 
 /* hero */
@@ -125,22 +127,6 @@ nav a:hover{
 :root.light .hero-img-dark { display: none; }
 
 /* mobile — stack vertically */
-@media (max-width: 640px) {
-    .hero {
-        flex-direction: column;
-    }
-    .hero-image {
-        width: 100%;
-    }
-}
-
-@media (max-width: 640px) {
-    .hero-image img {
-        max-height: 200px;
-        width: auto;
-        margin: 0 auto;
-    }
-}
 
 /* theme toggle */
 
@@ -172,6 +158,17 @@ nav a:hover{
     gap: var(--space-xs);
 }
 
+/* footer */
+.site-footer {
+    text-align: center;
+    padding: var(--space-lg) var(--space-md);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+}
+
+/* merged media query */
+
 @media (max-width: 640px) {
     nav {
         flex-wrap: wrap;
@@ -193,4 +190,11 @@ nav a:hover{
         margin-left: 0;
     }
     nav.open .nav-right { display: flex; }
+    .hero { flex-direction: column; }
+    .hero-image { width: 100%; }
+    .hero-image img {
+        max-height: 200px;
+        width: auto;
+        margin: 0 auto;
+    }
 }

@@ -12,7 +12,7 @@ async function getMessages(req, res, next){
 
 async function getNewMessageForm(req, res, next){
     res.render('messages/new', {
-        title: "New Message",
+        title: "Drop a Thought",
         errors: [],
         data: {}
     })
@@ -29,7 +29,7 @@ const createMessage = [
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 return res.status(400).render('messages/new', {
-                    title: "New Message",
+                    title: "Drop a Thought",
                     errors: errors.array(),
                     data: req.body, 
                 })
@@ -55,7 +55,7 @@ async function getMessageById(req, res, next){
 
 function getEditMessageForm(req, res, next){
     res.render('messages/edit', {
-        title: "Edit Message",
+        title: "Edit Your Drop",
         errors: [],
         data: req.message,
     })
@@ -68,7 +68,7 @@ const updateMessage = [
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 return res.status(400).render('messages/edit', {
-                    title: "Edit Message",
+                    title: "Edit Your Drop",
                     errors: errors.array(),
                     data: {
                         ...req.body,

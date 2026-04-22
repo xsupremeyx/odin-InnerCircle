@@ -6,7 +6,7 @@ const { validationResult, matchedData } = require('express-validator');
 function getSignUp(req, res, next){
     try{
         res.render("sign-up", {
-            title: "Sign Up",
+            title: "Join the Circle",
             errors: [],
             data: {},
         });
@@ -21,7 +21,7 @@ async function postSignUp(req, res, next){
         const errors = validationResult(req);
         if( !errors.isEmpty()){
             return res.status(400).render("sign-up", {
-                title: "Sign Up",
+                title: "Join the Circle",
                 errors: errors.array(),
                 data: req.body,
             });
@@ -64,7 +64,7 @@ function getLogOut(req, res, next){
 function getJoinForm(req, res, next){
     try{
         res.render("join", {
-            title: "Join Membership",
+            title: "Enter the Circle",
             errors: [],
         });
     }
@@ -82,7 +82,7 @@ async function postJoinForm(req, res, next){
             return res.redirect('/messages');
         }
         res.status(400).render("join", {
-            title: "Join Membership",
+            title: "Enter the Circle",
             errors: [{ msg: "Incorrect passcode" }],
         });
     }

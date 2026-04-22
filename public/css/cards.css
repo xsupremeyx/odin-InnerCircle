@@ -40,3 +40,24 @@
     font-size: calc(var(--font-size-base) * 1.5);
     margin-bottom: var(--space-sm);
 }
+
+.message-card {
+    position: relative;
+}
+
+.message-card h3 a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+}
+
+.message-card .message-actions {
+    position: relative;
+    z-index: 1;
+}
+
+.message-actions a,
+.message-actions button {
+    position: relative;
+    z-index: 2;
+}

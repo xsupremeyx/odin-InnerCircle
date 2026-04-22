@@ -77,6 +77,9 @@ body{
     line-height: var(--line-height-base);
     color: var(--color-text);
     background-color: var(--color-bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 h1,h2,h3{

@@ -4,24 +4,28 @@
 
     <div class="hero">
         <div class="hero-content">
-            <h1>Welcome to<br>Inner Circle</h1>
-            <p>A members-only space. Join to see who's talking and what's being said.</p>
+            <h1>The Circle.<br>Members only.</h1>
+            <p>A private space for members. What's said here, stays here.</p>
             <% if (!locals.currentUser) { %>
                 <div class="hero-actions">
                     <a href="/sign-up" class="btn">Join Now</a>
                     <a href="/log-in" class="btn-outline">Log In</a>
                 </div>
+            <% } else if (!currentUser.is_member) { %>
+                <div class="hero-actions">
+                    <a href="/join" class="btn">Join Circle</a>
+                    <a href="/messages" class="btn-outline">View Messages</a>
+                </div>
             <% } else { %>
-                <a href="/messages" class="btn">View Messages</a>
+                <div class="hero-actions">
+                    <a href="/messages/new" class="btn">+ Drop a Thought</a>
+                    <a href="/messages" class="btn-outline">View Messages</a>
+                </div>
             <% } %>
         </div>
         <div class="hero-image">
-            <img src="/imgs/hero-light.webp" 
-                class="hero-img-light" 
-                alt="Inner Circle">
-            <img src="/imgs/hero-dark.webp" 
-                class="hero-img-dark" 
-                alt="Inner Circle">
+            <img src="/imgs/hero-light.webp" class="hero-img-light" alt="Inner Circle">
+            <img src="/imgs/hero-dark.webp" class="hero-img-dark" alt="Inner Circle">
         </div>
     </div>
 
