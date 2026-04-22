@@ -3,14 +3,26 @@
 <div class="page-container">
 
     <div class="hero">
-        <h1>Welcome to Inner Circle</h1>
-        <% if (!locals.currentUser) { %>
-            <p>See more when you`re in.</p>
-            <a href="/sign-up" class="btn">Join Now</a>
-        <% } else { %>
-            <p>See what`s new in the circle.</p>
-            <a href="/messages" class="btn">View Messages</a>
-        <% } %>
+        <div class="hero-content">
+            <h1>Welcome to<br>Inner Circle</h1>
+            <p>A members-only space. Join to see who's talking and what's being said.</p>
+            <% if (!locals.currentUser) { %>
+                <div class="hero-actions">
+                    <a href="/sign-up" class="btn">Join Now</a>
+                    <a href="/log-in" class="btn-outline">Log In</a>
+                </div>
+            <% } else { %>
+                <a href="/messages" class="btn">View Messages</a>
+            <% } %>
+        </div>
+        <div class="hero-image">
+            <img src="/imgs/hero-light.webp" 
+                class="hero-img-light" 
+                alt="Inner Circle">
+            <img src="/imgs/hero-dark.webp" 
+                class="hero-img-dark" 
+                alt="Inner Circle">
+        </div>
     </div>
 
 </div>

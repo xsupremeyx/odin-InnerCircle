@@ -55,19 +55,91 @@ nav a:hover{
 
 /* hero */
 
-.hero{
-    text-align: center;
+.hero {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
     padding: var(--space-xl) 0;
     border-bottom: 1px solid var(--color-border);
 }
 
-.hero h1{
-    font-size: calc(var(--font-size-base) * 2);
+.hero-content {
+    flex: 1;
 }
 
-.hero p{
+.hero-content h1 {
+    font-size: calc(var(--font-size-base) * 2.5);
+    line-height: 1.2;
+    margin-bottom: var(--space-md);
+}
+
+.hero-content p {
     color: var(--color-text-muted);
-    margin: var(--space-sm) 0 var(--space-md);
+    margin-bottom: var(--space-lg);
+    font-size: calc(var(--font-size-base) * 1.1);
+}
+
+.hero-actions {
+    display: flex;
+    gap: var(--space-md);
+    align-items: center;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+}
+
+.hero-image img {
+    object-fit: cover;
+    object-position: left center; /* show left half = light version */
+    border: none;
+}
+
+/* light mode — show light, hide dark */
+.hero-img-dark { display: none; }
+.hero-img-light { display: block; }
+
+/* dark mode via class */
+:root.dark .hero-img-light { display: none; }
+:root.dark .hero-img-dark { display: block; }
+
+/* dark mode via media query fallback */
+@media (prefers-color-scheme: dark) {
+    .hero-img-light { display: none; }
+    .hero-img-dark { display: block; }
+}
+
+/* manual light override beats media query */
+:root.light .hero-img-light { display: block; }
+:root.light .hero-img-dark { display: none; }
+
+/* mobile — stack vertically */
+@media (max-width: 640px) {
+    .hero {
+        flex-direction: column;
+    }
+    .hero-image {
+        width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-image img {
+        max-height: 200px;
+        width: auto;
+        margin: 0 auto;
+    }
 }
 
 /* theme toggle */
