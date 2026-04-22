@@ -21,7 +21,7 @@
   --space-lg:  1.5rem;
   --space-xl:  2.5rem;
 
-  --radius:     4px;
+  --radius:     6px;
   --max-width:  720px;
   --nav-height: 56px;
 }
@@ -80,6 +80,8 @@ body{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 h1,h2,h3{
