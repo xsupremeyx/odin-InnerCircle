@@ -4,6 +4,10 @@
         <a href="/messages">Messages</a>
     </div>
     
+    <div class="nav-controls">
+        <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    </div>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme"></button>
     <div class="nav-right">
     <% if (locals.currentUser) { %>
         <span>Hi, <%= currentUser.username %></span>
@@ -18,6 +22,5 @@
         <a href="/sign-up">Sign up</a>
     <% } %>
     </div>
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme"></button>
 
 </nav>
